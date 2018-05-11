@@ -134,7 +134,7 @@ function get_sync_metadata_attributes()
 {
   global $conf;
 
-  $update_fields = array('filesize', 'width', 'height');
+  $update_fields = array('filesize', 'width', 'height', 'md5sum');
 
   if ($conf['use_exif'])
   {
@@ -203,6 +203,8 @@ function get_sync_metadata($infos)
     $infos['width'] = $image_size[0];
     $infos['height'] = $image_size[1];
   }
+
+  $infos['md5sum'] = md5_file($file);
 
   if ($is_tiff)
   {
